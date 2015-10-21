@@ -1,0 +1,14 @@
+Direction Contents 
+
+ebook_renamer:
+	Well documented
+	Looks very robust, but requires calibre, which I had some trouble installing
+paper-renamer
+pdf2ic
+pdfquery
+pdf-rename:	
+	Poorly documented
+	Looks it renames pdf files and changes metadata based on user input, rather than automatically parsing files
+pdf-title-rename:
+	Looks like it goes off of the file metadata; I couldn't get the dependencies to install
+
