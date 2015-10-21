@@ -1,0 +1,86 @@
+PDF Cleanup Project
+
+Journal Articles
+
+Ideas:
+
+Start with quickest approach, before more computational approaches
+Grab title from metadata first? Is DOI stored in metadata?
+
+Approaches:
+
+Metadata:
+- DOI, TITLE, ISBN
+Text-based: 
+- regex for DOI, TITLE, ISBN
+- Generate a corpus, and look for most frequent words among journal articles, books, etc.
+- Font size: see SciPlore Xtract: Extracting Titles from Scientific PDF Documents by Analyzing Style Information (Font Size)
+
+
+
+
+1. Extract text
+
+# This actually works
+less "the name of pdf file"
+lesspipe <filename>
+lesspipe <filename> | less
+
+# Python 
+pdf2txt <filename>
+
+Source http://stackoverflow.com/questions/3570591/cli-pdf-viewer-for-linux
+
+2. Identifying metadata 
+
+Try regex for DOI
+
+2
+sed -n -e 's_.*[Dd][Oo][Ii][:)] *\([[:digit:]][[:digit:]]*.[[:alnum:])(.-]*/[[:alnum:])(.-][[:alnum:]):(.-]*[[:alnum:]-]\).*_\1_p'
+
+(2nd try, in case the paper does not place "DOI" in front of the identifier):
+
+sed -n -e 's_.* *\([[:digit:]][[:digit:]]\.[[:alnum:])(.-]*[[:alnum:])(.-][[:alnum:]):(.-]*[[:alnum:]-]\).*_\1_p'
+
+http://www.mit.edu/people/lucylim/BibDesk.html
+
+
+xxx - Rename and organize
+Mendeley
+Referencer?
+Write script myself and use API:
+http://opendata.stackexchange.com/questions/638/open-database-apis-for-journal-article-metadata
+CrossRef and DataCite DOIs look promising:
+http://crosstech.crossref.org/2011/04/content_negotiation_for_crossr.html # Note: use single quotes instead of double
+http://libguides.mit.edu/apis
+
+Scrape google scholar:
+http://www.icir.org/christian/scholar.html
+http://wowter.net/2014/02/26/towards-google-scholar-api/
+https://github.com/ckreibich/scholar.py
+
+9. Other examples
+grep -a
+pdftotext whee.pdf | grep pattern
+find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \;
+
+http://stackoverflow.com/questions/2688481/does-grep-work-properly-on-pdf-files
+pdftotext file.pdf - | less
+pdftohtml -stdout -i file.pdf | lynx -stdi
+
+http://stackoverflow.com/questions/3570591/cli-pdf-viewer-for-linux
+
+Ebooks
+
+Tools
+Calibre
+bibshelf 
+ekitaab --> http://ebookmanager.sourceforge.net/
+
+Unsure if book or journal
+1. Search for some way of identifying as journal with less method
+  keywords? 
+Identify as book
+  IBSN?
+
+Keep database of journal names and search for them?

@@ -1,0 +1,12 @@
+# Extract all tags including unknown for files in a directory
+exiftool -a -u . 
+
+# Extract a list of tags for all files in a directory; similar to above, but also provides a list of the tags present in at least one file 
+exiftool -list . 
+
+# extract common meta information from files in directory, writing text output to ".txt" files with the same names
+exiftool  -w .txt -common .
+
+
+# generate CSV file with common tags from all files in a directory
+exiftool -common -csv dir > out.csv
